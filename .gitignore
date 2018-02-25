@@ -1,4 +1,6 @@
 /public/pacts/
+/public/upgrade/
+/public/uploads/
 /vendor/
 /.env
 /composer.lock

@@ -1,0 +1,52 @@
+{
+    "name": "chenshenchao/witpact",
+    "description": "Yet a WordPress stack with composer.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "chenshenchao",
+            "email": "chenshenchao@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Wit\\": "main"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "test"
+        }
+    },
+    "require": {
+        "johnpbloch/wordpress": "^4.9",
+        "vlucas/phpdotenv": "^2.4",
+        "wpackagist-theme/twentyseventeen": "^1.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "repositories": [
+        {
+          "type": "composer",
+          "url": "https://wpackagist.org"
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "public/mu-plugins/{$name}": ["type:wordpress-muplugin"],
+            "public/plugins/{$name}": ["type:wordpress-plugin"],
+            "public/themes/{$name}": ["type:wordpress-theme"]
+        },
+        "wordpress-install-dir": "public/pacts"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('asset/.env', '.env');\""
+        ],
+        "test": [
+            "phpunit --bootstrap vendor/autoload.php --testdox test"
+        ]
+    }
+}

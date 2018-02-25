@@ -1,0 +1,4 @@
+/public/pacts/
+/vendor/
+/.env
+/composer.lock

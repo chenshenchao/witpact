@@ -9,28 +9,16 @@
             "email": "chenshenchao@outlook.com"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "Wit\\": "main"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Test\\": "test"
-        }
-    },
     "require": {
+        "php": "^7",
         "johnpbloch/wordpress": "^4.9",
-        "vlucas/phpdotenv": "^2.4",
-        "wpackagist-theme/twentyseventeen": "^1.4"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^7.0"
+        "wpackagist-theme/twentyseventeen": "^1.4",
+        "chenshenchao/witpact-core": "^0.0.1"
     },
     "repositories": [
         {
-          "type": "composer",
-          "url": "https://wpackagist.org"
+            "type": "composer",
+            "url": "https://wpackagist.org"
         }
     ],
     "extra": {
@@ -44,9 +32,6 @@
     "scripts": {
         "post-root-package-install": [
             "php -r \"copy('asset/.env', '.env');\""
-        ],
-        "test": [
-            "phpunit --bootstrap vendor/autoload.php --testdox test"
         ]
     }
 }

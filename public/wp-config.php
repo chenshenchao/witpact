@@ -3,7 +3,7 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 // 启用 WitPact。
-(new Pact)->sign();
+(new Pact(__DIR__))->sign();
 
 // 进入 WordPress 设置脚本。
 require_once ABSPATH.'wp-settings.php';

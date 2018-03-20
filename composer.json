@@ -9,11 +9,25 @@
             "email": "chenshenchao@outlook.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Main\\": "main"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "test"
+        }
+    },
     "require": {
         "php": "^7",
         "johnpbloch/wordpress": "^4.9",
         "wpackagist-theme/twentyseventeen": "^1.4",
-        "chenshenchao/witpact-core": "^0.0.1"
+        "chenshenchao/witpact-core": "^0.0",
+        "chenshenchao/witpact-installer": "^0.0"
+    },
+    "require-dev": {
+        "chenshenchao/witpact-utility": "^0.0"
     },
     "repositories": [
         {
@@ -27,11 +41,18 @@
             "public/plugins/{$name}": ["type:wordpress-plugin"],
             "public/themes/{$name}": ["type:wordpress-theme"]
         },
-        "wordpress-install-dir": "public/pacts"
+        "wordpress-install-dir": "public/pacts",
+        "witpact-dist-dir": "dist"
     },
     "scripts": {
         "post-root-package-install": [
-            "php -r \"copy('asset/.env', '.env');\""
+            "WitPact\\Composer\\Builder::build"
+        ],
+        "watch": [
+            "WitPact\\Utility\\Watcher::watch"
+        ],
+        "test": [
+            "phpunit --bootstrap vendor/autoload.php --testdox test"
         ]
     }
 }

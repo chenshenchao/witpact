@@ -8,6 +8,7 @@
  */
 function copy_directory($source, $target) {
     $handle = opendir($source);
+    if (!is_dir($target)) mkdir($target);
     while (false === ($name = readdir($handle))) {
         if ('.' == $name or '..' == $name) continue;
         $sourcePath = $source.DIRECTORY_SEPARATOR.$name;
@@ -34,9 +35,8 @@ function remove_directory($directory) {
 }
 
 // 安装
-$accessPath = __DIR__.'/access';
-$publicPath = __DIR__.'/public';
+$assetPath = __DIR__.DIRECTORY_SEPARATOR.'asset';
 echo 'install project.'.PHP_EOL;
-echo "copy {$accessPath} to {$publicPath}.".PHP_EOL;
-copy_directory($accessPath, $publicPath);
-remove_directory($accessPath);
+echo "copy {$assetPath} to ${__DIR__}.".PHP_EOL;
+copy_directory($assetPath, __DIR__);
+remove_directory($assetPath);

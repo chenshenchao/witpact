@@ -9,7 +9,7 @@
 function copy_directory($source, $target) {
     $handle = opendir($source);
     if (!is_dir($target)) mkdir($target);
-    while (false === ($name = readdir($handle))) {
+    while (false !== ($name = readdir($handle))) {
         if ('.' == $name or '..' == $name) continue;
         $sourcePath = $source.DIRECTORY_SEPARATOR.$name;
         $targetPath = $target.DIRECTORY_SEPARATOR.$name;
@@ -25,7 +25,7 @@ function copy_directory($source, $target) {
  */
 function remove_directory($directory) {
     $handle = opendir($directory);
-    while (false === ($name = readdir($handle))) {
+    while (false !== ($name = readdir($handle))) {
         if ('.' == $name or '..' == $name) continue;
         $path = $directory.DIRECTORY_SEPARATOR.$name;
         if (is_file($path)) unlink($path);
@@ -37,6 +37,6 @@ function remove_directory($directory) {
 // 安装
 $assetPath = __DIR__.DIRECTORY_SEPARATOR.'asset';
 echo 'install project.'.PHP_EOL;
-echo "copy {$assetPath} to ${__DIR__}.".PHP_EOL;
+echo "copy {$assetPath}.".PHP_EOL;
 copy_directory($assetPath, __DIR__);
 remove_directory($assetPath);

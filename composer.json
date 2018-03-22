@@ -46,7 +46,7 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "WitPact\\Composer\\Builder::build"
+            "Wit\\Script\\Project::install"
         ],
         "watch": [
             "WitPact\\Utility\\Watcher::watch"

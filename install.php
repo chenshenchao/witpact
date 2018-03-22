@@ -16,6 +16,7 @@ function copy_directory($source, $target) {
         if (is_file($sourcePath)) copy($sourcePath, $targetPath);
         else copy_directory($sourcePath, $targetPath);
     }
+    closedir($handle);
 }
 
 /**
@@ -31,6 +32,7 @@ function remove_directory($directory) {
         if (is_file($path)) unlink($path);
         else remove_directory($path);
     }
+    closedir($handle);
     rmdir($directory);
 }
 

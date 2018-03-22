@@ -46,7 +46,7 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "Wit\\Script\\Project::install"
+            "php install.php"
         ],
         "watch": [
             "WitPact\\Utility\\Watcher::watch"

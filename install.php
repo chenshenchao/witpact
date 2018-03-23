@@ -36,9 +36,24 @@ function remove_directory($directory) {
     rmdir($directory);
 }
 
+/**
+ * 从 WordPress 官网下载盐。
+ * 
+ */
+function download_salt() {
+    $content = file_get_contents('https://api.wordpress.org/secret-key/1.1/salt');
+    preg_match_all('/define\s*\(\'([A-Z_]+)\'\s*,\s*\'(.*?)\'/', $content, $matches);
+    $map = array_combine($matches[1], $matches[2]);
+    foreach ($map as $name => $value) {
+        $item = "$name='$value'".PHP_EOL;
+        file_put_contents('.env', $item, FILE_APPEND);
+    }
+}
+
 // 安装
 $assetPath = __DIR__.DIRECTORY_SEPARATOR.'asset';
 echo 'install project.'.PHP_EOL;
 echo "copy {$assetPath}.".PHP_EOL;
 copy_directory($assetPath, __DIR__);
 remove_directory($assetPath);
+download_salt();
